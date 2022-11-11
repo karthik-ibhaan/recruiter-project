@@ -60,6 +60,7 @@ writable/session/*
 writable/uploads/*
 !writable/uploads/index.html
 !writable/uploads/locations.csv
+
 writable/debugbar/*
 
 php_errors.log
