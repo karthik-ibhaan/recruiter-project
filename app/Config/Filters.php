@@ -69,7 +69,7 @@ class Filters extends BaseConfig
      * @var array
      */
     public $filters = [
-        'auth' => ['before' => ['home/*','users/*','candidates/*','clients/*','demands/*','demandsview/*','home','clients','candidates','demands','candidates_archive']],
+        'auth' => ['before' => ['/','home/*','users/*','candidates/*','clients/*','demands/*','demandsview/*','home','clients','candidates','demands','candidates_archive']],
         'pagesfilter' => ['before' => ['clients/*', 'clients']],
         'demandfilter' => ['before' => ['demands','demands/*']],
         'isLoggedIn' => ['before' => ['registration','signin']]
