@@ -421,7 +421,7 @@
                                 <?= csrf_field() ?>
                                 <div class="form-group">
                                     <label data-bs-toggle="tooltip" data-bs-placement="left" title="Demand ID in Database">Demand ID</label>
-                                    <input type="text" class="form-control" style="pointer-events:none" name="demand_id3" id="demand_id3" pattern="\S(.*\S)?" required>
+                                    <input type="text" class="form-control" name="demand_id3" id="demand_id3" pattern="\S(.*\S)?" required>
                                 </div>
                                 <div class="form-group">
                                     <label data-bs-toggle="tooltip" data-bs-placement="left" title="Job Title">Job Title</label>
@@ -471,7 +471,7 @@
 
     });
 
-    $("#max_experience").on('input', function(){
+    $("#max_experience, #min_experience").on('input', function(){
         var min = document.getElementById('min_experience').value;
         var max = document.getElementById('max_experience').value;
         console.log(min, max);
@@ -483,11 +483,12 @@
         }
         else
         {
-            $(this).setCustomValidity('');
+            var validation = document.getElementById('max_experience');
+            validation.setCustomValidity('');
         }
     });
 
-    $("#max_experience2").on('input', function(){
+    $("#max_experience2, #min_experience2").on('input', function(){
         var min = document.getElementById('min_experience2').value;
         var max = document.getElementById('max_experience2').value;
         console.log(min, max);
@@ -499,11 +500,12 @@
         }
         else
         {
-            $(this).setCustomValidity('');
+            var validation = document.getElementById('max_experience2');
+            validation.reportValidity();
         }
     });
 
-    $("#max_budget").on('input', function(){
+    $("#max_budget, #min_budget").on('input', function(){
         var min = document.getElementById('min_budget').value;
         var max = document.getElementById('max_budget').value;
         console.log(min, max);
@@ -515,11 +517,12 @@
         }
         else
         {
-            $(this).setCustomValidity('');
+            var validation = document.getElementById('max_budget');
+            validation.setCustomValidity('');
         }
     })
 
-    $("#max_budget2").on('input', function(){
+    $("#max_budget2, #min_budget2").on('input', function(){
         var min = document.getElementById('min_budget2').value;
         var max = document.getElementById('max_budget2').value;
         console.log(min, max);
@@ -531,7 +534,8 @@
         }
         else
         {
-            $(this).setCustomValidity('');
+            var validation = document.getElementById('max_budget2');
+            validation.setCustomValidity('');
         }
     })
 
@@ -673,5 +677,4 @@
         }, timeout)
     }
     }
-    console.log("HELLO FROM THE OTHER")
 </script>

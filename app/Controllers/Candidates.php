@@ -187,12 +187,13 @@
 
             if($builder->insert($saveData))
             {
-                echo "Updated";
-                print_r($plannedDOJ, $actualDOJ);
+                $session->setFlashdata('success','Update of Candidate '.$c_name.' successful.');
+                return redirect()->to('candidates');
             }
             else
             {
-                echo "Failed";
+                $session->setFlashdata('error','Update of Candidate '.$c_name.' unsuccessful. Error occured.');
+                return redirect()->to('candidates');
             }
         }
 
@@ -212,6 +213,7 @@
 
         public function EditCandidate(){
             helper(['form']);
+            $session = session();
             $candidateID = $this->request->getVar('candidateID2');
             $demand2 = $this->request->getVar('demand2');
             $action = $this->request->getVar('action2');
@@ -269,12 +271,13 @@
             $builder->where('candidate_id',$candidateID);
             if($builder->update())
             {
-                echo "Updated";
-                print_r($plannedDOJ, $actualDOJ);
+                $session->setFlashdata('success','Update of Candidate '.$c_name.' successful.');
+                return redirect()->to('candidates');
             }
             else
             {
-                echo "Failed";
+                $session->setFlashdata('error','Update of Candidate '.$c_name.' unsuccessful. Error occured.');
+                return redirect()->to('candidates');
             }
         }
 

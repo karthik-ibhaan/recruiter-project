@@ -144,7 +144,7 @@ class Demands extends Controller
     public function DeleteDemand() {
         helper(['form']);
         $demandModel = new DemandModel();
-        $demand_id = (int) $this->request->getVar('demand_id');
+        $demand_id = (int) $this->request->getVar('demand_id3');
         echo $demand_id;
         $demandModel->delete($demand_id);
     }
@@ -223,6 +223,7 @@ class Demands extends Controller
         else
         {
             $session->setFlashdata('error','Insufficient Details Provided');
+            return redirect()->to('demands');
         }
     }
 

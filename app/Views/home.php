@@ -70,7 +70,7 @@
                 <div class="row">
                     <div class="col square">
                         <p class="boxContent">
-                            No Demands Added, <a href="/demand" class="underline">Click Here to Add</a>
+                            No Demands Added, <a href="/demands" class="underline">Click Here to Add</a>
                         </p>
                     </div>
                 </div>

@@ -10,16 +10,12 @@
         </div>
         <?php endif;?>
 
-        <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#addModal">Add New</button>
-
-        <br>
         <div class="row">
             <div class="column">
                 <input type="text" id="filter" placeholder="Enter Filter...">
                 <button type="button" name="reset-button" id="reset-button" value="<?php echo ""?>">Reset Filter</button>
             </div>
             <div class="column">
-                <label>Filter By</label>
 
             </div>
         </div>

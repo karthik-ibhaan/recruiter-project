@@ -11,9 +11,9 @@
             </div>
         <?php endif;?>
 
-        <?php if(session()->getFlashdata('count') !== NULL):?>
+        <?php if(session()->getFlashdata('success') !== NULL):?>
         <div class="alert alert-success">
-            Successfully inserted <?php echo session()->get('count') ?> records.
+            <?php echo session()->getFlashdata('success')?>
         </div>
         <?php endif;?>
 
@@ -23,10 +23,6 @@
             <div class="column">
                 <input type="text" id="filter" value="" placeholder="Enter Filter...">
                 <button type="button" name="reset-button" class="btn btn-primary mb-2" id="reset-button" value="<?php echo ""?>" >Reset Filter</button>
-            </div>
-            <div class="column">
-                <label>Filter By</label>
-
             </div>
         </div>
         <div class="text-center">
@@ -561,13 +557,10 @@
                     if(reg.test(value))
                     {
                         var phno1 = document.getElementById("phno_1");
-                        console.log(value)
                         phno1.style.border = "";
                         phno1.setCustomValidity("");                    }
                     else
                     {
-                        console.log(value)
-                        console.log(value.length);
                         var phno1 = document.getElementById("phno_1");
                         phno1.style.border = "2px solid red";
                         phno1.setCustomValidity("Phone Numbers Can Only be 10 Digits.");
@@ -591,8 +584,6 @@
                     }
                     else
                     {
-                        console.log(value)
-                        console.log(value.length);
                         var phno2 = document.getElementById("phno_2");
                         phno2.style.border = "2px solid red";
                         phno2.setCustomValidity("Phone Numbers Can Only be 10 Digits.");
@@ -649,7 +640,6 @@
                     httpRequest.send();
                     httpRequest.onload = function() {
                         res = JSON.parse(httpRequest.responseText);
-                        console.log(res[0]);
                         if(res[0] == "t")
                         {
                             document.getElementById("requiredElement").textContent = "REQUIRED";
@@ -687,39 +677,27 @@
             httpRequest.send();
             httpRequest.onload = function() {
                 res = JSON.parse(httpRequest.responseText);
-                console.log(res);
                 var planned, actual;
                 var candidate_name = res[0].CANDIDATE_NAME;
                 var demand = res[0].DEMAND_ID;
-                console.log("DEMAND ID = ", demand);
                 var jobTitle = res[1][0].JOB_TITLE;
                 var status = res[0].RECRUITMENT_STATUS;
                 var phno = JSON.parse(res[0].PHONE_NO);
-                for(i=0;i<phno.length;i++)
-                {
-                    console.log(phno[i]);
-                }
                 var email = res[0].EMAIL_ADDRESS;
-                console.log(email);
                 var org = res[0].ORGANISATION;
                 var exp = res[0].TOTAL_EXPERIENCE;
                 var cctc = res[0].CCTC_LPA;
                 var ectc = res[0].ECTC_LPA;
-                console.log(exp);
                 var dateTime = res[0].INTERVIEW_DATE;
                 var split = dateTime.split(' ');
-                console.log(split[0]+"at"+split[1]);
                 var notice = res[0].NOTICE_PERIOD_DAYS;
                 var location = res[0].WORK_LOCATION;
                 var client = res[1][0].CLIENT_ID;
                 var c_name = res[1][0].CLIENT_NAME;
-                console.log(c_name);
-                console.log('Client = ', client);
                 if(res[0].PLANED_DOJ != "0000-00-00")
                     var planned = res[0].PLANNED_DOJ;
                 if(res[0].ACTUAL_DOJ != "0000-00-00");
                     var actual = res[0].ACTUAL_DOJ;
-                console.log(res[0].PHONE_NO);
                 // $(".form-group #edit_phno_1").val( phno_1 )
                 // $(".form-group #phno_2").val( phno_2 )
                 $(".form-group #client_id2").val( client).change();
@@ -785,7 +763,6 @@
             if(action != "" && action == "Selected")
             {
                 $("#selection-data2").show();
-                console.log("In the IF Statement");
                 $("#submissionDate2").attr('max', today);
                 $('#plannedDOJ2, #actualDOJ2').attr('min', today);
             }
@@ -801,7 +778,6 @@
             console.log($('#interview-time').val());
         });
 
-        console.log( "Target = " + target);
         // $(".search-filter").on('input', function() {
         //     console.log(table.columns(5).search(this.value).draw());
         //     console.log("Email Row = " + table.columns(5).search(this.value).draw().row().length)
