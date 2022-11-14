@@ -18,8 +18,8 @@ class Home extends Controller
         //Setting Current Timezone and Time
         $tz = 'Asia/Kolkata';
         $timestamp = time();
-        $dt = new \DateTime("now", new \DateTimeZone($tz)); //first argument "must" be a string
-        $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
+        $dt = new \DateTime("now", new \DateTimeZone($tz)); 
+        $dt->setTimestamp($timestamp);
 
         //Setting Recruitment Statuses
         $recruitmentStatus['In Process'] = ['00_Sourcing','00_Profile Sent','00_CV sent to client','00_No Feedback from client'];
@@ -40,6 +40,7 @@ class Home extends Controller
                 $candidateQueries[$value] = $queryResult;
             }
         }
+        /* Recent Candidate and Total Number of Candidates Added by User */
         $builder3 = $db->table('candidates');
         $builder3->select('candidate_name');
         $builder3->where('recruiter', $session->get('user_id'));        

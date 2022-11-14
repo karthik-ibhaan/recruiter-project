@@ -186,11 +186,11 @@
                     <div class="row">
                         <div class="form-group col">
                             <label data-bs-toggle="tooltip" data-bs-placement="right" title="Phone Number of the Candidate.">Phone Number</label>
-                            <input type="number" aria-label="Phone Number 1" class="form-control" id="phno_1" name="phno_1" placeholder="1234567890" pattern = "[6789]\d{9,9}">
+                            <input type="number" aria-label="Phone Number 1" min="0" class="form-control" id="phno_1" name="phno_1" placeholder="1234567890" pattern = "[6789]\d{9,9}">
                         </div>
                         <div class="form-group col">
                             <label data-bs-toggle="tooltip" data-bs-placement="right" title="Alternate Phone Number of the Candidate. This is not mandatory.">Alternate Phone Number</label>
-                            <input type="number" aria-label="Phone Number 2" class="form-control" id="phno_2" name="phno_2" placeholder="1234567890" pattern = "[6789]\d{9,9}">
+                            <input type="number" aria-label="Phone Number 2" min="0" class="form-control" id="phno_2" name="phno_2" placeholder="1234567890" pattern = "[6789]\d{9,9}">
                         </div>
                     </div>
                     <div class="row">
