@@ -163,7 +163,7 @@
                             <input type="text" class="form-control" name="cus_spoc" placeholder="Customer SPOC" required pattern="\S(.*\S)?">
                         </div>
                         <div class="form-group col">
-                            <label data-bs-toggle="tooltip" data-bs-placement="right" title="ID given in the Job Description. Ex: BNGCPT-3346">Ibhaan SPOC</label>
+                            <label data-bs-toggle="tooltip" data-bs-placement="right" title="The point of contact on Ibhaan's end.">Ibhaan SPOC</label>
                             <input type="text" class="form-control" name="ibhaan_spoc" placeholder="Ibhaan SPOC" value="<?php echo session()->get('name')?>" required>
                         </div>
                     </div>
@@ -222,7 +222,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <label data-bs-toggle="tooltip" data-bs-placement="right" title="Budget in LPA.">Budget</label>
+                        <label data-bs-toggle="tooltip" data-bs-placement="left" title="Budget in LPA.">Budget</label>
                         <div class="form-group col">
                             <label>Min</label>
                             <input type="number" step=0.1 class="budget form-control" name="min_budget" id="min_budget" placeholder="5.7" required pattern="\S(.*\S)?">
@@ -347,7 +347,7 @@
                         <input type="text" class="form-control" name="cus_spoc2" id="cus_spoc2" placeholder="Customer SPOC" required pattern="\S(.*\S)?">
                     </div>
                     <div class="form-group col">
-                        <label data-bs-toggle="tooltip" data-bs-placement="right" title="ID given in the Job Description. Ex: BNGCPT-3346">Ibhaan SPOC</label>
+                        <label data-bs-toggle="tooltip" data-bs-placement="right" title="The point of contact on Ibhaan's end.">Ibhaan SPOC</label>
                         <input type="text" class="form-control" name="ibhaan_spoc2" id="ibhaan_spoc2" placeholder="Ibhaan SPOC" required pattern="\S(.*\S)?">
                     </div>
                 </div>
@@ -363,7 +363,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label data-bs-toggle="tooltip" data-bs-placement="right" title="Budget in LPA.">Budget</label>
+                    <label data-bs-toggle="tooltip" data-bs-placement="left" title="Budget in LPA.">Budget</label>
                     <div class="form-group col">
                         <label>Min</label>
                         <input type="number" step=0.1 class="budget form-control" name="min_budget2" id="min_budget2" placeholder="5.7" required pattern="\S(.*\S)?">
@@ -428,7 +428,7 @@
                                     <input type="text" class="form-control" style="pointer-events:none" name="job_title3" id="job_title3" pattern="\S(.*\S)?" required>
                                 </div>
                                 <center>
-                                    <h3>Are you sure you want to delete this client details?</h3>
+                                    <h3>Are you sure you want to delete this demand details?</h3>
                                 </center>
                             </div>
                             <div class="modal-footer">
@@ -475,16 +475,19 @@
         var min = document.getElementById('min_experience').value;
         var max = document.getElementById('max_experience').value;
         console.log(min, max);
-        if(max<=min)
+        if(max!= "")
         {
-            var validation = document.getElementById('max_experience');
-            validation.setCustomValidity('Max Experience cannot be lesser than minimum experience.');
-            validation.reportValidity();
-        }
-        else
-        {
-            var validation = document.getElementById('max_experience');
-            validation.setCustomValidity('');
+            if(max<=min)
+            {
+                var validation = document.getElementById('max_experience');
+                validation.setCustomValidity('Max Experience cannot be lesser than minimum experience.');
+                validation.reportValidity();
+            }
+            else
+            {
+                var validation = document.getElementById('max_experience');
+                validation.setCustomValidity('');
+            }
         }
     });
 
@@ -492,16 +495,19 @@
         var min = document.getElementById('min_experience2').value;
         var max = document.getElementById('max_experience2').value;
         console.log(min, max);
-        if(max<=min)
+        if(max != "")
         {
-            var validation = document.getElementById('max_experience2');
-            validation.setCustomValidity('Max Experience cannot be lesser than minimum experience.');
-            validation.reportValidity();
-        }
-        else
-        {
-            var validation = document.getElementById('max_experience2');
-            validation.reportValidity();
+            if(max<=min)
+            {
+                var validation = document.getElementById('max_experience2');
+                validation.setCustomValidity('Max Experience cannot be lesser than minimum experience.');
+                validation.reportValidity();
+            }
+            else
+            {
+                var validation = document.getElementById('max_experience2');
+                validation.reportValidity();
+            }
         }
     });
 
@@ -509,33 +515,39 @@
         var min = document.getElementById('min_budget').value;
         var max = document.getElementById('max_budget').value;
         console.log(min, max);
-        if(max<=min)
+        if(max != "")
         {
-            var validation = document.getElementById('max_budget');
-            validation.setCustomValidity('Max Budget cannot be lesser than Minimum Budget.');
-            validation.reportValidity();
-        }
-        else
-        {
-            var validation = document.getElementById('max_budget');
-            validation.setCustomValidity('');
-        }
+            if(max<=min)
+            {
+                var validation = document.getElementById('max_budget');
+                validation.setCustomValidity('Max Budget cannot be lesser than Minimum Budget.');
+                validation.reportValidity();
+            }
+            else
+            {
+                var validation = document.getElementById('max_budget');
+                validation.setCustomValidity('');
+            }
+        }    
     })
 
     $("#max_budget2, #min_budget2").on('input', function(){
         var min = document.getElementById('min_budget2').value;
         var max = document.getElementById('max_budget2').value;
         console.log(min, max);
-        if(max<=min)
+        if(max != "")
         {
-            var validation = document.getElementById('max_budget2');
-            validation.setCustomValidity('Max Budget cannot be lesser than Minimum Budget.');
-            validation.reportValidity();
-        }
-        else
-        {
-            var validation = document.getElementById('max_budget2');
-            validation.setCustomValidity('');
+            if(max<=min)
+            {
+                var validation = document.getElementById('max_budget2');
+                validation.setCustomValidity('Max Budget cannot be lesser than Minimum Budget.');
+                validation.reportValidity();
+            }
+            else
+            {
+                var validation = document.getElementById('max_budget2');
+                validation.setCustomValidity('');
+            }
         }
     })
 

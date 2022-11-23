@@ -53,31 +53,16 @@ class Demands extends Controller
         $db = \Config\Database::connect();
         $options = [];
         $builder = $db->table('demand');
-        $builder->select('client.CLIENT_NAME, demand.*');
+        $builder->select('client.CLIENT_NAME, demand.*, my_users.FULL_NAME');
         $builder->join('client', 'demand.client_id = client.client_id');
+        $builder->join('my_users','demand.recruiter = my_users.user_id');
         $query = $builder->get();
         $demands = $query->getResultArray();
         $fieldNames = $query->getFieldNames();
 
         $clients = $clientModel->orderBy('CLIENT_ID', 'DESC')->findAll();
-        foreach($fieldNames as $keys=>$values)
-        {
-            if($values == "CLIENT_NAME")
-            {
-                $sql = 'SELECT DISTINCT '.$values.' FROM '.$clientModel->table.';';
-                $query = $db->query($sql);
-                array_push($options, $query->getResultArray());
-            }
-            else
-            {
-                $sql = 'SELECT DISTINCT '.$values.' FROM '.$demandModel->table.';';
-                $query = $db->query($sql);
-                array_push($options, $query->getResultArray());
-            }
-        }
         $data = [];
         $data['fieldNames'] = $fieldNames;
-        $data['options'] = $options;
         $data['demands'] = $demands;
         $data['clients'] = $clients;
         // $data['customers'] = $customers;
@@ -304,7 +289,7 @@ class Demands extends Controller
 
         if($demandModel->update($demand, $data))
         {
-            $session->setFlashdata('updated','Demand'.$j_title.'has been updated'.'by'.$recruiter);
+            $session->setFlashdata('updated','Demand '.$j_title.' has been updated '.'by '.$session->get('name'));
             return redirect()->to('demands');
         }
         else

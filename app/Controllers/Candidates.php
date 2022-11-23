@@ -25,6 +25,7 @@
             $options = [];
             $demandOptions = $db->table('demand');
             $demandOptions->select('demand.DEMAND_ID, demand.JOB_TITLE, client.CLIENT_ID, client.CLIENT_NAME');
+            $demandOptions->where('demand.demand_status','Open');
             $demandOptions->join('client', 'demand.client_id = client.client_id');
             $demandOptions = $demandOptions->get()->getResultArray();
             $builder = $db->table('candidates');

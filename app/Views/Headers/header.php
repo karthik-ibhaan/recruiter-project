@@ -76,6 +76,13 @@
         </li>
     <?php endif;?>
     <li class="nav-item">
+        <a href="/password_reset" class="nav-link text-dark">
+            <i class="bi bi-people-fill mr-3 text-primary">
+                Password Reset
+            </i>
+        </a>
+    </li>
+    <li class="nav-item">
         <a href="Home/Logout" class="nav-link text-dark">
             <i class="bi bi-box-arrow-right mr-3 text-primary"></i>
             Logout

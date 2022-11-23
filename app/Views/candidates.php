@@ -30,9 +30,6 @@
             <thead>
                 <tr>
                 <?php foreach($fieldNames as $keys=>$values):?>
-                    <?php if(strtolower(strtolower($values) == "demand_id" || strtolower($values) == "client_id")):?>
-                        <?php continue;?>
-                    <?php endif;?>
                     <?php $display = str_replace('_',' ', $values);?>
                     <th scope="col" class="col">
                         <?php echo $display?>
@@ -45,9 +42,6 @@
                 <?php foreach($candidates as $keys=>$data):?>
                     <tr>
                         <?php foreach($fieldNames as $keys=>$value):?>
-                            <?php if(strtolower($value) == "demand_id" || strtolower($value) == "client_id"):?>
-                                <?php continue;?>
-                            <?php endif;?>
                         <td><?php echo $data[$value]?></td>
                         <?php endforeach;?>
                         <td>
@@ -121,7 +115,6 @@
                                     <option id="<?php echo $data?>" data-target="<?php echo $data?>" value="<?php echo $data?>"><?php echo $uniqueNames[$keys]?></option>
                                 <?php endforeach;?>
                             </select>
-                            <?php print_r($uniqueIDs)?>
                         </div>
                         <?php $uniqueIDs = array_unique(array_map(function ($i) { return $i['CLIENT_ID']; }, $demandOptions));?>
                         <?php $uniqueNames = array_unique(array_map(function ($i) { return $i['CLIENT_NAME']; }, $demandOptions));?>
@@ -289,7 +282,6 @@
                                     <option id="<?php echo $data?>" data-target="<?php echo $data?>" value="<?php echo $data?>"><?php echo $uniqueNames[$keys]?></option>
                                 <?php endforeach;?>
                             </select>
-                            <?php print_r($uniqueIDs)?>
                         </div>
                         <div class="form-group col">
                             <label data-bs-toggle="tooltip" data-bs-placement="right" title="The Job Title for which the candidate is sourced.">Job Title</label>
@@ -348,7 +340,7 @@
                     </div>
                     <div class="row">
                         <div class="form-group col">
-                            <label>Organisation</label>
+                            <label data-bs-toggle="tooltip" data-bs-placement="right" title="The organisation that the candidate belongs to.">Organisation</label>
                             <input type="text" class="form-control" name="organisation2" id="organisation2" pattern="\S(.*\S)?" required>
                         </div>
                     </div>
@@ -373,7 +365,7 @@
                             <input type="number" step=0.1 min=0 class="form-control" name="cctc2" id="cctc2" placeholder="5.7" required>
                         </div>
                         <div class="form-group col">
-                            <label data-bs-toggle="tooltip" data-bs-placement="right" title="Budget in LPA.">Expected CTC (in LPA)</label>
+                            <label data-bs-toggle="tooltip" data-bs-placement="right" title="Expected CTC in Lakhs per Annum.">Expected CTC (in LPA)</label>
                             <input type="number" step=0.1 min=0 class="form-control" name="ectc2" id="ectc2" placeholder="5.7" required>
                         </div>
                     </div>

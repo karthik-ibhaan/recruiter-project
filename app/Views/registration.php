@@ -37,7 +37,6 @@
                         <div class="input-group mb-3">
                             <select class="form-select" id="level" name="level" required>
                                 <option selected>Level...</option>
-                                <option value="1">Adminstrator</option>
                                 <option value="2">Co-ordinator</option>
                                 <option value="3">Recruiter</option>
                             </select>

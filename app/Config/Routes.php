@@ -44,6 +44,8 @@ $routes->match(['get','post'],'Demands/DropdownAction','Demands::DropdownAction'
 $routes->match(['get','post'],'Candidates/CheckExisting','Candidates::CheckExisting');
 $routes->get('/(?i)candidates_archive','CandidatesArchive::index');
 $routes->get('/(?i)demandsview','DemandsView::index');
+$routes->get('/(?i)password_reset','PasswordReset::index');
+$routes->get('/(?i)candidatesview','CandidatesView::index');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

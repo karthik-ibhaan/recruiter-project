@@ -113,9 +113,11 @@ class Users extends Controller
         echo $userID, $userEmail, $userLevel;
         if($userID != "" && $userEmail != "" && $userLevel != "")
         {
-            $sql = 'UPDATE MY_USERS SET email = '."\"$userEmail\"".', level='."$userLevel".' WHERE USER_ID='."$userID".';';
-            echo $sql;
-            if($db->query($sql))
+            $sql = $db->table('my_users');
+            $sql->set('email',$userEmail);
+            $sql->set('level',$userLevel);
+            $sql->where('user_id',$userID);
+            if($sql->update())
             {
                 if($userLevel == 1)
                 {
@@ -169,12 +171,7 @@ class Users extends Controller
 
         while (($details = fgetcsv($handle, 1000, ",")) !== FALSE)
         {
-            if ($header == true)
-            {
-                $header = false;
-                continue;
-            }
-    
+
             if ($details[0] == '' || $details[1] == '' || $details[2] == '')
             {
                 break;                        
@@ -188,15 +185,14 @@ class Users extends Controller
 
             $full_name = (string) trim($details[0]);
             $email = (string) trim($details[1]);
-            $pass = (string) substr(str_shuffle(str_repeat($chrList, mt_rand($chrRepeatMin,$chrRepeatMax))), 1, $chrRandomLength);
+            $pass = 'ibhaan@1234';
             $level = (string) trim($details[2]);
             $level = strtolower($level);
-            $userLevel = ['administrator', 'co-ordinator', 'recruiter'];
 
             //Validation
             if(strlen($full_name) <= 2)
             {
-                $session->setFlashdata('error', 'Full name field invalid.');
+                $session->setFlashdata('error', 'Full name field invalid.'.$full_name);
                 return redirect()->to('/users');
             }
 
@@ -217,7 +213,7 @@ class Users extends Controller
                 return redirect()->to('/users');
             }
 
-            if($level != $userLevel[0] && $level != $userLevel[1] && $level != $userLevel[2])
+            if($level != 1 && $level != 2 && $level != 3)
             {
                 $session->setFlashdata('error', 'Level not set for '.$full_name.' properly.'.$level);
                 return redirect()->to('/users');
@@ -228,18 +224,10 @@ class Users extends Controller
             {
                 $admin_id = (int) session()->get('user_id');
                 $userModel = new UserModel();
-                for($i=0;$i<=2;$i++)
-                {
-                    if($level==$userLevel[$i])
-                    {
-                        $level=(string) ($i+1);
-                    }
-                }
                 $data = [
                     'full_name' => $full_name,
                     'email' => $email,
                     'password' => password_hash($pass, PASSWORD_DEFAULT),
-                    'created_by' => $email,
                     'level' => $level
                 ];
 

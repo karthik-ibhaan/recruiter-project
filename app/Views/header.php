@@ -7,6 +7,9 @@
         <li class="col" style="padding-top:24px;">
             <a href="/signin" class="nav-link">Sign-In</a>
         </li>
+        <li class="col" style="padding-top:24px;">
+            <a href="/registration" class="nav-link">Register</a>
+        </li>
     </ul>
 </nav>
 

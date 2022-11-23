@@ -39,7 +39,6 @@
                             <?php echo $display?>
                         </th>
                     <?php endforeach;?>
-                    <th class="col align-middle">EDITS</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,23 +47,6 @@
                             <?php foreach($fieldNames as $keys=>$value):?>
                             <td><?php echo $data[$value]?></td>
                             <?php endforeach;?>
-                            <td>
-                                <div class="col">
-                                    <button
-                                        type="button" 
-                                        class="btn btn-dark btn-sm editButton" 
-                                        data-bs-toggle="modal" 
-                                        data-id="<?php echo $data['CANDIDATE_ID']?>" 
-                                        data-name="<?php echo $data['CANDIDATE_NAME']?>" 
-                                        data-bs-target="#editModal">EDIT</button>
-                                    <button 
-                                        type="button" 
-                                        class="btn btn-dark btn-sm deleteButton" data-bs-toggle="modal" 
-                                        data-id="<?php echo $data['CANDIDATE_ID']?>" 
-                                        data-name="<?php echo $data['CANDIDATE_NAME']?>" 
-                                        data-bs-target="#deleteModal">DELETE</button>
-                                </div>
-                            </td>
                         </tr>
                     <?php endforeach;?>
                 </tbody>
@@ -84,5 +66,37 @@
 </html>
 
 <script>
+    $.noConflict();
+    var table = $('#candidates').DataTable({
+        initComplete: function () {
+            this.api().columns('.col')
+            .every(function () {
+                var column = this;
+                var select = $('<select><option value="">-Select-</option></select>')
+                    .appendTo($(column.footer()).empty())
+                    .on('change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
 
+                        column.search(val ? '^' + val + '$' : '', true, false).draw();
+                    });
+
+                column
+                    .data()
+                    .unique()
+                    .sort()
+                    .each(function (d, j) {
+                        select.append('<option value="' + d + '">' + d + '</option>');
+                    });
+            });
+        },
+        order: [[1,"desc"]],            
+        saveState: false,
+        scrollX:        true,
+        scrollCollapse: true,
+        fixedColumns:   {
+            right: 1,
+            left: 0
+        }
+    });
+    table.columns.adjust().draw();
 </script>
