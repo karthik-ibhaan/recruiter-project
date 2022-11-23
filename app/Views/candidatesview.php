@@ -17,8 +17,6 @@
         </div>
         <?php endif;?>
 
-        <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#addModal">Add New</button>
-
         <div class="row">
             <div class="column">
                 <input type="text" id="filter" value="<?php if($statusFilter != ""):?><?php echo $statusFilter?><?php endif;?>" placeholder="Enter Filter...">
