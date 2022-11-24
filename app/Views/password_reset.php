@@ -6,6 +6,7 @@
         <!-- Page content holder -->
         <div class="page-content p-5" id="content">
             <div class="container mt-5">
+                <h2>CHANGE PASSWORD</h2>
                 <?php if(session()->getFlashdata('msg') !== NULL):?>
                     <div class="alert alert-warning">
                     <?php echo session()->getFlashdata('msg') ?>
