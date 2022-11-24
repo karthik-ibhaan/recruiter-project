@@ -20,7 +20,7 @@
         <center><h2>YOUR CANDIDATES</h2></center>
 
         <br>
-        
+
         <h3>To see all of the current candidates, <a class="btn btn-primary" href="/candidatesview">Click Here</a></h3>
 
         <br>
@@ -480,32 +480,6 @@
         $(document).on('change', "select.search-filter[data-class=search-class]", function() {
             var value = $(this).val();
             var value2 = $("#emailAdd").val();
-            // console.log(value2);
-            // console.log(value);
-            // console.log(table.columns(1).search(value ? '^' + value + '$' : '', true, false).columns(5).search(value2 ? '^' + value2 + '$' : '', true, false).draw().row().count());
-            // rows = table.rows({page:'current'}).data().length;
-            // console.log( "Rows = ",rows)
-            // if(value == "" || value2 == "")
-            // {
-
-            // }
-            // else if(rows >=1)
-            // {
-                // document.getElementById("requiredElement").textContent = "REQUIRED";
-                // var emailAdd = document.getElementById("emailAdd");
-                // emailAdd.setCustomValidity("This Candidate Has Already Been Sent for this Job Title");
-                // emailAdd.style.border = "2px solid red";
-                // emailAdd.reportValidity();
-                // alert("This Candidate Has Already Been Added");
-            // }
-            // else
-            // {
-            //     var emailAdd = document.getElementById("emailAdd");
-            //     emailAdd.setCustomValidity("");
-            //     document.getElementById("requiredElement").textContent = "";
-            //     emailAdd.style.border = "";
-            //     document.getElementById("requiredElement").hide();
-            // }
             timeout = setTimeout(() => {
                 if(value != "" && value2 != "")
                 {
@@ -603,32 +577,6 @@
             var value = search;
             var value2 = $("#emailAdd").val();
             clearTimeout(timeout);
-            // console.log(value2);
-            // console.log(value);
-            // console.log(table.columns(1).search(value ? '^' + value + '$' : '', true, false).columns(5).search(value2 ? '^' + value2 + '$' : '', true, false).draw());
-            // rows = table.rows({page:'current'}).data().length;
-            // console.log( "Rows = ",rows)
-            // if(value == "" || value2 == "")
-            // {
-
-            // }
-            // else if(value != "" && value2 != "" && rows>=1)
-            // {
-            //     document.getElementById("requiredElement").textContent = "REQUIRED";
-            //     var emailAdd = document.getElementById("emailAdd");
-            //     emailAdd.setCustomValidity("This Candidate Has Already Been Sent for this Job Title");
-            //     emailAdd.style.border = "2px solid red";
-            //     emailAdd.reportValidity();
-            //     setTimeout(2000);
-            //     alert("This Candidate Has Already Been Added");
-            // }
-            // else
-            // {
-            //     var emailAdd = document.getElementById("emailAdd");
-            //     emailAdd.setCustomValidity("");
-            //     document.getElementById("requiredElement").textContent = "";
-            //     document.getElementById("requiredElement").style.display = "none";
-            // }
             timeout = setTimeout(() => {
                 if(value != "" && value2 != "")
                 {
@@ -697,8 +645,6 @@
                     var planned = res[0].PLANNED_DOJ;
                 if(res[0].ACTUAL_DOJ != "0000-00-00");
                     var actual = res[0].ACTUAL_DOJ;
-                // $(".form-group #edit_phno_1").val( phno_1 )
-                // $(".form-group #phno_2").val( phno_2 )
                 $(".form-group #client_id2").val( client).change();
                 $(".form-group #client_id2").css('pointer-events','none');
                 $("#candidateID2").val(candidateID);
@@ -776,11 +722,6 @@
         $('#interview-time').on('change',function() {
             console.log($('#interview-time').val());
         });
-
-        // $(".search-filter").on('input', function() {
-        //     console.log(table.columns(5).search(this.value).draw());
-        //     console.log("Email Row = " + table.columns(5).search(this.value).draw().row().length)
-        // })
 
         $(".dropdown-item").click(debound(filter_table, 500))
         document.getElementById('filter').addEventListener('input', function (e) {
