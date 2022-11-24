@@ -17,8 +17,15 @@
         </div>
         <?php endif;?>
 
-        <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#addModal">Add New</button>
+        <center><h2>YOUR CANDIDATES</h2></center>
 
+        <br>
+        
+        <h3>To see all of the current candidates, <a class="btn btn-primary" href="/candidatesview">Click Here</a></h3>
+
+        <br>
+
+        <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#addModal">Add New</button>
         <div class="row">
             <div class="column">
                 <input type="text" id="filter" value="" placeholder="Enter Filter...">

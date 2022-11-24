@@ -15,6 +15,7 @@
         </div>
         <?php endif;?>
 
+        <h2>ALL DEMANDS</h2>
         <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#addModal">Add New</button>
 
         <br>

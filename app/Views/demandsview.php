@@ -10,15 +10,8 @@
         </div>
         <?php endif;?>
 
-        <div class="row">
-            <div class="column">
-                <input type="text" id="filter" placeholder="Enter Filter...">
-                <button type="button" name="reset-button" id="reset-button" value="<?php echo ""?>">Reset Filter</button>
-            </div>
-            <div class="column">
+        <h2>ALL DEMANDS</h2>
 
-            </div>
-        </div>
         <br>
         <div class="text-center">
             <table style="width:100%;" class="table" id="demands" name="demands">

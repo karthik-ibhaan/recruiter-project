@@ -17,23 +17,15 @@
         </div>
         <?php endif;?>
 
-        <div class="row">
-            <div class="column">
-                <input type="text" id="filter" value="<?php if($statusFilter != ""):?><?php echo $statusFilter?><?php endif;?>" placeholder="Enter Filter...">
-                <button type="button" name="reset-button" class="btn btn-primary mb-2" id="reset-button" value="<?php echo ""?>" >Reset Filter</button>
-            </div>
-            <div class="column">
-                <label>Filter By</label>
-
-            </div>
-        </div>
+        <center><h2>ALL CANDIDATES</h2></center>
+        <br>
         <div class="text-center">
             <table class="table" id="candidates" name="candidates">
                 <thead>
                     <tr>
                     <?php foreach($fieldNames as $keys=>$values):?>
                         <?php $display = str_replace('_',' ', $values);?>
-                        <th scope="col">
+                        <th scope="col" class="col">
                             <?php echo $display?>
                         </th>
                     <?php endforeach;?>
@@ -58,14 +50,14 @@
         </div>
     </div>
 
-    <button type="button" class="btn mb-2" href="/candidates_archive">Candidates Archive</button>
     <?php include('Footers/footer.php')?>
     </body>
 </html>
 
 <script>
-    $.noConflict();
-    var table = $('#candidates').DataTable({
+    $(document).ready(function() {
+        $.noConflict();
+        var table = $('table').DataTable({
         initComplete: function () {
             this.api().columns('.col')
             .every(function () {
@@ -86,15 +78,14 @@
                         select.append('<option value="' + d + '">' + d + '</option>');
                     });
             });
-        },
-        order: [[1,"desc"]],            
-        saveState: false,
-        scrollX:        true,
+        },  
+        scrollX: true,
         scrollCollapse: true,
         fixedColumns:   {
             right: 1,
             left: 0
-        }
-    });
-    table.columns.adjust().draw();
+        },
+        order: [[1,"desc"]],
+        });
+    })
 </script>
