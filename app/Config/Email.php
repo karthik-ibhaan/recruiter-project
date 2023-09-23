@@ -47,21 +47,21 @@ class Email extends BaseConfig
      *
      * @var string
      */
-    public $SMTPHost = 'ssl://smtp.gmail.com';
+    public $SMTPHost = 'ssl://smtp.googlemail.com';
 
     /**
      * SMTP Username
      *
      * @var string
      */
-    public $SMTPUser = 'recruiter.project0@gmail.com';
+    public $SMTPUser = 'karthik@ibhaan-global.com';
 
     /**
      * SMTP Password
      *
      * @var string
      */
-    public $SMTPPass = 'T8DGmQBaeLVz6CH';
+    public $SMTPPass = 'Pass@4321';
 
     /**
      * SMTP Port

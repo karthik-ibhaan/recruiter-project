@@ -28,20 +28,21 @@
             'JOB_TITLE',
             'PRIMARY_SKILL',
             'SECONDARY_SKILL',
-            'RECRUITER'
+            'JOB_DESCRIPTION',
+            'RECRUITER',
+            'JD_LOCATION',
+            'SUBMISSION_DATE'
         ];
 
         protected $validationRules = [
             'CLIENT_ID' => 'required',
             'DEMAND_STATUS' => 'required',
-            'PRIORITY' => 'required',
             'COMPLEXITY' => 'required',
             'NO_POSITIONS' => 'required',
             'CUS_SPOC' => 'required',
             'IBHAAN_SPOC' => 'required', 	
             'INDUSTRY_SEGMENT' => 'required', 	
             'DOMAIN' => 'required',
-            'SKILL' => 'required',
             'MIN_EXPERIENCE' => 'required',
             'MIN_BUDGET' => 'required',
             'LOCATION' => 'required',

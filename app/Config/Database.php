@@ -32,10 +32,14 @@ class Database extends Config
      */
     public $default = [
         'DSN'      => '',
-        'hostname' => '127.0.0.1',
+        // 'hostname' => '127.0.0.1',
+        // 'username' => 'ibhaangl_admin',
+        // 'password' => 'dXpW+hDbe$#R',
+        // 'database' => 'ibhaangl_portal',
+          'hostname' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => 'test2',
+        'database' => 'ibhaan_portal',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,

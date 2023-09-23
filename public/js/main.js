@@ -11,6 +11,6 @@ $(function() {
     var today = new Date().toISOString().split('T')[0];
     $("#submissionDate").attr('max', today);
 
-    $('#plannedDOJ, #actualDOJ','#interview-date').attr('min', today);
+    $('#interview-date').attr('min', today);
 });
 });

@@ -1,8 +1,87 @@
 <!DOCTYPE html>
 <html>
-    <?php include('Headers/head.php')?>
+<head>
+    <title>Ibhaan-Global Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <?php if(session()->get('isLoggedIn') == TRUE):?>
+            <link rel="stylesheet" href="<?php echo base_url('css/style1.css');?>">
+    <?php else:?>
+            <link rel="stylesheet" href="<?php echo base_url('css/style.css');?>">
+    <?php endif;?>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.12.1/fc-4.1.0/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.1/b-2.3.3/b-html5-2.3.3/datatables.min.css"/>
+    <link href="https://cdn.datatables.net/fixedcolumns/4.2.2/css/fixedColumns.bootstrap5.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css" integrity="sha512-pTaEn+6gF1IeWv3W1+7X7eM60TFu/agjgoHmYhAfLEU8Phuf6JKiiE8YmsNC0aCgQv4192s4Vai8YZ6VNM6vyQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
     <body>
-        <?php include('Headers/header.php')?>
+    <nav class="sticky-top bg-light" style="display: flex; padding-top: 10px;align-items: center; justify-content: left;" id="topBar">
+    <ul style="list-style-type:none;text-align:center;" class="row">
+        <li class="col">
+            <img src="<?php echo base_url('images/ibhaan-logo.png')?>">
+        </li>
+        <?php if(session()->get('isLoggedIn') == FALSE):?>
+            <li class="col" style="padding-top:24px;">
+                <a href="/signin" class="nav-link">Sign-In</a>
+            </li>
+        <?php elseif(session()->get('isLoggedIn') == TRUE):?>
+            <li class="col" style="padding-top:24px;">
+                <a href="/ibhaaninterview/logout" class="nav-link">Logout</a>
+            </li>
+        <?php endif;?>
+    </ul>
+</nav>
+    <?php if(session()->get('user_id') != NULL):?>
+    <div class="vertical-nav bg-white" id="sidebar">
+        <div class="py-4 px-3 mb-4 bg-light">
+            <div class="media d-flex align-items-center">
+                <div class="media-body">
+                <h4 class="m-2"><?php echo session()->get('name')?></h4>
+                <?php $level = session()->get('level')?>
+                <?php if($level == "1"):?>
+                    <p class="font-weight-normal text-muted m-2 text-uppercase">administrator</p>
+                    </div>
+                <?php elseif($level == "2"):?>
+                    <p class="font-weight-normal text-muted m-2 text-uppercase">Co-Ordinator</p>
+                    </div>
+                <?php elseif($level == "3"):?>
+                    <p class="font-weight-normal text-muted m-2 text-uppercase">Recruiter</p>
+                    </div>
+                <?php elseif($level == "4"):?>
+                    <p class="font-weight-normal text-muted m-2 text-uppercase">Interview Consultant</p>
+                    </div>
+                <?php endif;?>
+            </div>
+        </div>
+
+        <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Dashboard</p>
+
+        <ul class="nav flex-column bg-white mb-0">
+            <li class="nav-item">
+                <a href="/home" class="nav-link text-dark">
+                    <i class="bi bi-house-fill mr-3 text-primary"></i>
+                        Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/ibhaaninterview/logout" class="nav-link text-dark">
+                    <i class="bi bi-box-arrow-right mr-3 text-primary"></i>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </div>
+    <?php endif; ?>
         <!-- Page content holder -->
         <div class="page-content p-5" id="content">
             <div class="container mt-5">

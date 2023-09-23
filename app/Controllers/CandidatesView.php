@@ -8,6 +8,7 @@
     use CodeIgniter\Files\File;
     use PhpOffice\PhpSpreadsheet\Spreadsheet;
     use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+    use App\Libraries\RecruitmentStatuses;
 
     class CandidatesView extends Controller
     {
@@ -31,12 +32,6 @@
             $builder = $db->table('candidates');
             $builder2 = $db->table('candidates');
             $table = $candidateModel->table;
-            $recruitmentStatus['In Process'] = ['00_Sourcing','00_Profile Sent','00_CV sent to client','00_No Feedback from client'];
-            $recruitmentStatus['Shortlisted'] = ['001_Pos. Hold','01_L1-In progress','01_R1-In progress','01_R2-In progress','01_F2F-In progress','01_HR-In progress','01_Reject-No Show','01_Reject-Cand. Dropped','02_Feedback Pending'];
-            $recruitmentStatus['Selected'] = ['04_Selected','05_Offer Declined'];
-            $recruitmentStatus['Rejected-Sc'] = ['00_Duplicate','00_Reject-Budget','00_Reject-HNP','00_Reject-No Responce','00_Reject-Screen','00_Reject-Fake','001_Pos. closed','001_Pos. Modified'];
-            $recruitmentStatus['Rejected-Skill'] = ['03_Reject-Skill'];
-            $recruitmentStatus['Selected'] = ['04_Selected','05_Offer Declined'];
 
             $location = [];
             $path = WRITEPATH . 'uploads/' . 'locations.csv';
@@ -55,15 +50,27 @@
                     array_push($location, $details[0]);
                 }
             }
+            $recruitmentStatuses = new RecruitmentStatuses;
+            $recruitmentStatus = $recruitmentStatuses->recruitmentStatuses();
 
             // $builder->select('candidates.*','demand.demand_id','demand.job_title, my_users.full_name');
             // $builder->join('demand', 'demand.demand_id = candidates.demand_id');
-            $sqlquery = 'SELECT demand.DEMAND_ID, CLIENT.CLIENT_ID, CLIENT.CLIENT_NAME, demand.JOB_TITLE, CANDIDATES.*, my_users.FULL_NAME FROM CANDIDATES JOIN demand ON demand.demand_id = candidates.demand_id JOIN client ON client.client_id = demand.client_id JOIN my_users ON my_users.user_id = candidates.RECRUITER WHERE candidates.recruiter = '.$session->get('user_id');
+            $sqlquery = 'SELECT client.CLIENT_NAME, demand.DEMAND_ID, demand.DEMAND_STATUS, demand.CUS_SPOC, demand.JOB_TITLE, candidates.*, my_users.FULL_NAME FROM candidates JOIN demand ON demand.demand_id = candidates.DEMAND_ID JOIN client ON client.CLIENT_ID = demand.CLIENT_ID JOIN my_users ON my_users.USER_ID = candidates.RECRUITER ORDER BY candidates.CANDIDATE_ID DESC';
             $query = $db->query($sqlquery);
             $candidates = $query->getResultArray();
             $fieldNames = $query->getFieldNames();
-            // $candidates = $candidateModel->orderBy('CANDIDATE_ID', 'DESC')->where('recruiter', $session->get('user_id'))->findAll();
+            $fieldNames = array_unique($fieldNames);
+            // $candidates = $candidateModel->orderBy('CANDIDATE_ID', 'DESC')->findAll();
             // $fieldNames = $candidateModel->allowedFields;
+            foreach($candidates as $keys=>$data)
+            {
+                $datetime = $data['SUBMISSION_DATE'];
+                $date = strtotime("$datetime");
+                $candidates[$keys]['SUBMISSION_DATE'] = date("Y-m-d", $date);
+                $candidates[$keys]['SUBMISSION_TIME'] = date("H:i:s", $date);
+            }
+            $fieldNames = array_diff($fieldNames, ["SUBMISSION_DATE", "FULL_NAME"]);
+            array_push($fieldNames, "SUBMISSION_DATE", "SUBMISSION_TIME", "FULL_NAME");
             $data['demands'] = $demands;
             $data['statusFilter'] = "";
             $data['demandOptions'] = $demandOptions;
@@ -82,3 +89,4 @@
             echo view('candidatesview', $data);
         }
     }
+?>

@@ -5,9 +5,9 @@
     <?php include('header.php')?>
     <div class="page-content p-5" id="content">
         <div class="container mt-5">
-            <div class="row mx-auto col-md-6 align-items-center">
+            <div class="row mx-auto col-md-6 col-lg-4 align-items-center">
                 <div class="col-">
-                    <h2>Sign-In</h2>
+                    <center><h2 class="text-uppercase">Sign-In</h2></center>
 
                     <?php if(session()->getFlashdata('msg') !== NULL):?>
                     <div class="alert alert-warning">

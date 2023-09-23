@@ -26,7 +26,10 @@ class Filters extends BaseConfig
         'auth' => Auth::class,
         'pagesfilter' => UserPageFilter::class,
         'demandfilter' => DemandFilter::class,
-        'isLoggedIn' => LoggedIn::class
+        'cofilter' => Coordinator::class,
+        'isLoggedIn' => LoggedIn::class,
+        'interviewFilter' => InterviewConsultantFilter::class
+
     ];
 
     /**
@@ -78,10 +81,48 @@ class Filters extends BaseConfig
         'demandsview/*', 'demandsview',
         'candidates_archive','candidates_archive/*',
         'password_reset','password_reset/*',
-        'candidatesview','candidatesview/*']],
-        'pagesfilter' => ['before' => ['clients/*', 'clients']],
-        'demandfilter' => ['before' => ['demands','demands/*']],
+        'candidatesview','candidatesview/*',
+        'profilesourcing','profilesourcing/*',
+        'interviewlist','interviewlist/*',
+        'selectiondetails','selectiondetails/*',
+        'overallstatus','overallstatus/*',
+        'attendance','attendance/*',
+        'attendanceview','attendanceview/*',
+        'leaveapplication','leaveapplication/*',
+        'adminapproval','adminapproval/*',
+        'runratereport','runratereport/*',
+        'coordinatordemands','coordinatordemands/*',
+        'assigneddemands', 'assigneddemands/*',
+        'ibhaaninterview', 'ibhaaninterview/*',
+        'interviewapproval', 'interviewapproval',
+        'iginterviews', 'iginterviews/*']],
+        'interviewFilter' => ['before' => ['/',
+        'home/*', 'home',
+        'users/*', 'users',
+        'candidates/*', 'candidates',
+        'clients/*', 'clients',
+        'demands/*', 'demands',
+        'demandsview/*', 'demandsview',
+        'candidates_archive','candidates_archive/*',
+        'password_reset','password_reset/*',
+        'candidatesview','candidatesview/*',
+        'profilesourcing','profilesourcing/*',
+        'interviewlist','interviewlist/*',
+        'selectiondetails','selectiondetails/*',
+        'overallstatus','overallstatus/*',
+        'attendance','attendance/*',
+        'attendanceview','attendanceview/*',
+        'leaveapplication','leaveapplication/*',
+        'adminapproval','adminapproval/*',
+        'runratereport','runratereport/*',
+        'coordinatordemands','coordinatordemands/*',
+        'assigneddemands', 'assigneddemands/*',
+        'interviewapproval', 'interviewapproval',
+        'iginterviews', 'iginterviews/*']],
+        'pagesfilter' => ['before' => ['users','users/*','attendance','attendance/*','attendanceview','attendanceview/*','adminapproval','adminapproval/*','runratereport','runratereport/*','interviewapproval','interviewapproval']],
+        'demandfilter' => ['before' => ['clients', 'clients/*','profilesourcing','profilesourcing/*','demands','demands/*','selectiondetails','selectiondetails/*', 'coordinatordemands','coordinatordemands/*']],
         'isLoggedIn' => ['before' => ['registration','registration/*',
         'signin','signin/*']]
     ];
 }
+?>

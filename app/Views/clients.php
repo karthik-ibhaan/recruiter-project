@@ -26,12 +26,12 @@
 
             <h2>CLIENTS</h2>
             <div class="text-center">
-                <table class="table" id="clients" name="clients">
+                <table class="table table-striped table-bordered" id="clients" name="clients">
                     <thead>
                         <tr>
                             <th scope="col" class="text-center"><?php echo $fieldNames["0"]?>
-                            <th scope="col" class="text-center"><?php echo $fieldNames["1"]?>
                             <th scope="col" class="text-center"><?php echo $fieldNames["3"]?>
+                            <th scope="col" class="text-center"><?php echo $fieldNames["1"]?>
                             <th scope="col" class="text-center">EDITS</th>
                         </tr>
                     </thead>
@@ -42,9 +42,9 @@
                                 <td class="text-center"><?php echo $data["CUSTOMER_NAME"]?></td>
                                 <td class="text-center"><?php echo $data["CLIENT_NAME"]?></td>
                                 <td>
-                                    <div class="col" class="text-center">
-                                        <button type="button" class="btn btn-dark btn-sm editButton" data-bs-toggle="modal" data-id="<?php echo $data['CLIENT_ID']?>" data-name="<?php echo $data['CLIENT_NAME']?>" data-bs-target="#editModal">EDIT</button>
-                                        <button type="button" class="btn btn-dark btn-sm deleteButton" data-bs-toggle="modal" data-id="<?php echo $data['CLIENT_ID']?>" data-name="<?php echo $data['CLIENT_NAME']?>" data-bs-target="#deleteModal">DELETE</button>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-dark btn-sm editButton" data-bs-toggle="modal" data-id="<?php echo $data['CLIENT_ID']?>" data-name="<?php echo $data['CLIENT_NAME']?>" data-bs-target="#editModal"><i class="bi bi-pen"></i></button>
+                                        <button type="button" class="btn btn-dark btn-sm deleteButton" data-bs-toggle="modal" data-id="<?php echo $data['CLIENT_ID']?>" data-name="<?php echo $data['CLIENT_NAME']?>" data-bs-target="#deleteModal"><i class="bi bi-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -192,12 +192,13 @@
     });
 
     $(document).ready(function() {
-        $.noConflict();
+        
         $(".table").DataTable({
             fixedColumns:   {
             right: 1,
             left: 0
-        }
+            },
+            order: [[0, "desc"]]
         });
     })
 </script>

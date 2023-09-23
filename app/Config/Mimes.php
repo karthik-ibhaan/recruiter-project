@@ -311,12 +311,15 @@ class Mimes
         'doc'   => [
             'application/msword',
             'application/vnd.ms-office',
+            'application/octet-stream',
+            'text/html'
         ],
         'docx' => [
             'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
             'application/zip',
             'application/msword',
             'application/x-zip',
+            'application/octet-stream'
         ],
         'dot' => [
             'application/msword',

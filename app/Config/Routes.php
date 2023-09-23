@@ -33,11 +33,10 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('/(?i)users','Users::index',['filter' => 'pagesfilter']);
-$routes->get('/(?i)registration', 'Registration::index');
 $routes->get('/(?i)signin', 'SignIn::index');
 $routes->get('/signin', 'SignIn::index');
 $routes->get('/(?i)home','Home::index');
-$routes->get('/(?i)clients', 'Clients::index',['filter' => 'pagesfilter']);
+$routes->get('/(?i)clients', 'Clients::index');
 $routes->get('/(?i)demands', 'Demands::index',['filter'=> 'demandfilter']);
 $routes->get('/(?i)candidates', 'Candidates::index');
 $routes->match(['get','post'],'Demands/DropdownAction','Demands::DropdownAction');
@@ -46,6 +45,21 @@ $routes->get('/(?i)candidates_archive','CandidatesArchive::index');
 $routes->get('/(?i)demandsview','DemandsView::index');
 $routes->get('/(?i)password_reset','PasswordReset::index');
 $routes->get('/(?i)candidatesview','CandidatesView::index');
+$routes->get('/(?i)profilesourcing','ProfileSourcing::index');
+$routes->get('/(?i)overallstatus','OverallStatus::index');
+$routes->get('/(?i)interviewlist','InterviewList::index');
+$routes->get('/(?i)selectiondetails','SelectionDetails::index');
+$routes->get('/(?i)attendance','Attendance::index');
+$routes->get('/(?i)attendanceview','AttendanceView::index');
+$routes->get('/(?i)leaveapplication','LeaveApplication::index');
+$routes->get('/(?i)adminapproval', 'AdminApproval::index');
+$routes->get('/(?i)runratereport', 'RunRateReport::index');
+$routes->get('/(?i)coordinatordemands', 'CoordinatorDemands::index');
+$routes->get('/(?i)assigneddemands', 'AssignedDemands::index');
+$routes->get('/(?i)ibhaaninterview', 'IbhaanInterview::index');
+$routes->get('/(?i)interviewapproval', 'InterviewApproval::index');
+$routes->get('/(?i)iginterviews', 'IGInterviews::index');
+// $routes->get('/(?i)sendmail','SendMail::index');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
